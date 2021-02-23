@@ -1,1 +1,1 @@
-# JDCPushScripts
+京东云无线宝推送脚本 支持TelegramBot机器人和钉钉机器人推送。
