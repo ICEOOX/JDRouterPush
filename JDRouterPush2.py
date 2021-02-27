@@ -68,10 +68,14 @@ def get_point():
                 create_time = first_record["createTime"] / 1000
                 point_amount = first_record["pointAmount"]
                 markdown_point_str = markdown_point_list(point_data_list)
+                # 筛选总可用积分
+                method_count = "https://router-app-api.jdcloud.com/v1/regions/cn-north-1/routerAccountInfo"
+                res_count = requests.get(url=method_count, headers=headers, params=params)
+                point_data_list_count = res_count.json()["result"]["accountInfo"]["amount"]
                 # 判断是否今天到账新的积分
                 if is_today(create_time):
                     point_count = point_count + point_amount
-                    point_desp = point_desp + "\n* " + router_name + "_" + router_mac[-3:] + " 到账积分" + str(point_amount)
+                    point_desp = point_desp + "\n* " + router_name + "_" + router_mac[-3:] + " 总可用积分" + str(point_data_list_count)
                     # 是否自动兑换积分
                     if is_auto_exchange:
                         if point_exchange(router_mac, point_amount):
