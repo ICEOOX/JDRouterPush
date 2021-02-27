@@ -57,7 +57,7 @@ def get_point():
         router_mac = device["router_mac"]
         router_name = device["router_name"]
         device_point_total = get_point_count(router_mac)
-        params = {"mac": router_mac, "source": "1", "currentPage": 1, "pageSize": 7}
+        params = {"mac": router_mac, "source": "1", "currentPage": 1, "pageSize": 5}
         res = requests.get(url=jd_base_url + method, headers=headers, params=params)
         if res.status_code == 200:
             point_data_list = list(res.json()["result"]["pointRecords"])
